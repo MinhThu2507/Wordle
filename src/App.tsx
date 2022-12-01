@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
+import Board from './Components/Board/Board';
+import Heading from './Components/Heading/Heading';
+import {RootState} from './Redux/store'
 
 function App() {
+
+  const {board} = useSelector((state: RootState) => state.boardReducer)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Heading type='h1' text='Wordle' />
+      <Heading type='subtitle' text='Another Wordle Clone' />
+      <div className='board-container'>
+        <Board board={board}/>
+      </div>
     </div>
   );
 }
